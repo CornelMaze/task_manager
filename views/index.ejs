@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/bootstrap.min.css" />
+  <title>Home page</title>
+ </head>
+ <body>
+  <div class="jumbotron">
+   <div class="container pl-5 pr-5 text-center">
+    <h2>Task Application</h2>
+   </div>
+   <div class="container pl-5 pr-5">
+    <form action="/add" method="POST">
+     <div class="form-group mb-3">
+      <!-- <label for="">Task</label> -->
+      <input
+       type="text"
+       name="task"
+       placeholder="Enter a task ..."
+       class="form-control"
+      />
+     </div>
+     <div class="container text-center">
+      <button type="submit" class="btn btn-primary">Submit</button>
+     </div>
+    </form>
+   </div>
+   <div class="container px-5">
+    <% for(let info of data){ %>
+
+    <form action="/delete" method="POST">
+     <p class="p-2 my-2">
+      <%= info.task %>
+      <input type="hidden" name="id" value="<%= info._id%>" />
+      <% if(!info.status){ %>
+      <button type="submit" class="btn btn-primary" formaction="/update">
+       Mark as Completed
+      </button>
+
+      <% } %>
+      <button class="btn btn-danger" type="submit">Delete</button>
+     </p>
+    </form>
+
+    <% } %>
+   </div>
+  </div>
+ </body>
+</html>
